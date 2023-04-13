@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { connectDatabase } from './db';
+import postRoutes from "./routes/postRoutes";
 import dotenv from 'dotenv';
 const express = require('express');
 
@@ -15,5 +16,6 @@ const app = express();
 app.use(express.json());
 
 app.get('/api', getHome);
+app.use('/api/posts', postRoutes);
 
 export default app;
