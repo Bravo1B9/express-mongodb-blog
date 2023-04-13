@@ -1,8 +1,10 @@
 import { Request, Response } from 'express';
+import { connectDatabase } from './db';
 import dotenv from 'dotenv';
 const express = require('express');
 
 dotenv.config();
+connectDatabase();
 
 const getHome = (req: Request, res: Response) => {
   res.status(200).json({ msg: 'Home route' });
