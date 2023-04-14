@@ -1,5 +1,8 @@
 import { Request, Response } from "express";
+import { postCollection } from "../db";
 
 export const createPost = async (req: Request, res: Response) => {
-  res.json({ msg: 'Create a post' }).status(201);
+  const post = req.body;
+  await postCollection.insertOne(post);
+  res.json({ msg: 'Post created' }).status(201);
 };
