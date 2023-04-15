@@ -6,5 +6,6 @@ const router = Router();
 router.post('/:authorId', PostController.createPost);
 router.get('/', PostController.getAllPosts);
 router.get('/:postId', PostController.getPostById);
+router.put('/:postId', PostController.updatePostTitle);
 
 export default router;
