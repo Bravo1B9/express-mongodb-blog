@@ -3,6 +3,7 @@ import * as PostController from "../controllers/postController";
 
 const router = Router();
 
-router.post('/', PostController.createPost);
+router.post('/:authorId', PostController.createPost);
+router.get('/', PostController.getAllPosts);
 
 export default router;

@@ -16,3 +16,8 @@ export const createPost = async (req: Request, res: Response) => {
   await postCollection.insertOne(post);
   res.json({ msg: 'Post created' }).status(201);
 };
+
+export const getAllPosts = async (req: Request, res: Response) => {
+  const allPosts = await postCollection.find().toArray();
+  res.json(allPosts).status(200);
+};
