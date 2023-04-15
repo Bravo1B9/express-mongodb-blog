@@ -21,3 +21,8 @@ export const getAllPosts = async (req: Request, res: Response) => {
   const allPosts = await postCollection.find().toArray();
   res.json(allPosts).status(200);
 };
+
+export const getPostById = async (req: Request, res: Response) => {
+  const post = await postCollection.findOne({ _id: new ObjectId(req.params.postId) });
+  res.json(post).status(200);
+};
