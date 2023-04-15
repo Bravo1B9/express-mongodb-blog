@@ -8,7 +8,7 @@ export const createPost = async (req: Request, res: Response) => {
     title: req.body.title,
     body: req.body.body,
     tags: req.body.tags,
-    catagories: req.body.catagories,
+    categories: req.body.categories,
     author: new ObjectId(req.params.authorId),
     createdAt: new Date(),
     updatedAt: new Date(),

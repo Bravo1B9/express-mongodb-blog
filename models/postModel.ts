@@ -4,7 +4,7 @@ export interface Post {
   title: string;
   body: string;
   tags: string[];
-  catagories: string[];
+  categories: string[];
   author: ObjectId;
   createdAt: Date;
   updatedAt: Date;
