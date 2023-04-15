@@ -29,7 +29,7 @@ export const getPostById = async (req: Request, res: Response) => {
   res.json(post).status(200);
 };
 
-export const updatePostTitle = async (req: Request, res: Response) => {
+export const updatePost = async (req: Request, res: Response) => {
   const { title, body, tags, categories } = req.body;
   await postCollection.updateOne(
     { _id: new ObjectId(req.params.postId) },
