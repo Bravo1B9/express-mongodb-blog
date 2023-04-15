@@ -41,3 +41,8 @@ export const updatePost = async (req: Request, res: Response) => {
     })
     .status(200);
 };
+
+export const deletePost = async (req: Request, res: Response) => {
+  await postCollection.deleteOne({ _id: new ObjectId(req.params.postId) });
+  res.json({ msg: `Post ${req.params.postId} deleted` });
+};
