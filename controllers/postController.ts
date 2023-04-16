@@ -27,25 +27,27 @@ export const getPostById = async (req: Request, res: Response) => {
     _id: new ObjectId(req.params.postId),
   });
 
-  if(!post) {
-    res.status(404).json({ msg: 'Post not found' });
+  if (!post) {
+    res.status(404).json({ msg: "Post not found" });
   } else {
     res.json(post).status(200);
   }
-
 };
 
 export const updatePost = async (req: Request, res: Response) => {
   const { title, body, tags, categories } = req.body;
-  await postCollection.updateOne(
-    { _id: new ObjectId(req.params.postId) },
-    { $set: { title, body, tags, categories } }
-  );
-  res
-    .json({
-      msg: `Post ${req.params.postId} title updated`,
-    })
-    .status(200);
+  const post = await postCollection.findOne({
+    _id: new ObjectId(req.params.postId),
+  });
+  if(!post) {
+    res.status(404).json({ msg: 'Post not found' });
+  } else {
+    await postCollection.updateOne(
+      { _id: new ObjectId(req.params.postId) },
+      { $set: { title, body, tags, categories } }
+    );
+    res.status(200).json({ msg: 'Post updated' });
+  }
 };
 
 export const deletePost = async (req: Request, res: Response) => {
