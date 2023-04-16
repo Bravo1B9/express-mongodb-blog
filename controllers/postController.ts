@@ -26,7 +26,13 @@ export const getPostById = async (req: Request, res: Response) => {
   const post = await postCollection.findOne({
     _id: new ObjectId(req.params.postId),
   });
-  res.json(post).status(200);
+
+  if(!post) {
+    res.status(404).json({ msg: 'Post not found' });
+  } else {
+    res.json(post).status(200);
+  }
+
 };
 
 export const updatePost = async (req: Request, res: Response) => {
