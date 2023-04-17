@@ -51,6 +51,11 @@ export const updatePost = async (req: Request, res: Response) => {
 };
 
 export const deletePost = async (req: Request, res: Response) => {
-  await postCollection.deleteOne({ _id: new ObjectId(req.params.postId) });
-  res.json({ msg: `Post ${req.params.postId} deleted` });
+  const post = await postCollection.findOne({ _id: new ObjectId(req.params.postId)});
+  if(!post) {
+    res.status(404).json({ msg: 'Post not found' });
+  } else {
+    await postCollection.deleteOne({ _id: new ObjectId(req.params.postId) });
+    res.json({ msg: `Post ${req.params.postId} deleted` });
+  }
 };
